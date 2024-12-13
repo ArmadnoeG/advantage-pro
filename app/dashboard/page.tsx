@@ -1,10 +1,8 @@
-import { LoginCard } from '@/components/login/login-card'
-
-export default function Home() {
+export default function Dashboard() {
 	return (
 		<>
 			<section className='h-screen w-full flex justify-center items-center'>
-				<LoginCard />
+				hola bro perro ctm
 			</section>
 		</>
 	)
