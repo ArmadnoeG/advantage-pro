@@ -6,6 +6,7 @@ import {
 	SidebarGroup
 } from '@/components/ui/sidebar'
 import { NavUser } from '@/components/general/nav-user'
+import { ModeToggle } from '@/components/general/theme-toggle'
 
 export function AppSidebar() {
 	return (
@@ -19,6 +20,7 @@ export function AppSidebar() {
 			</SidebarContent>
 
 			<SidebarFooter>
+				<ModeToggle />
 				<p className='text-sm text-muted-foreground'>chao</p>
 			</SidebarFooter>
 		</Sidebar>
