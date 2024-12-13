@@ -1,22 +1,20 @@
 import type { Metadata } from 'next'
-import { Geist, Roboto } from 'next/font/google'
+import { Geist, Roboto_Flex } from 'next/font/google'
 import './globals.css'
 
 const geistSans = Geist({
-	subsets: ['latin'],
-	weight: ['400', '500', '600', '700'],
-	display: 'swap'
+	variable: '--font-geist-sans',
+	subsets: ['latin']
 })
 
-const robotoMono = Roboto({
-	subsets: ['latin'],
-	weight: ['400', '500', '700'],
-	display: 'swap'
+const geistMono = Roboto_Flex({
+	variable: '--font-roboto-flex',
+	subsets: ['latin']
 })
 
 export const metadata: Metadata = {
 	title: 'Advantage Pro',
-	description: 'The most advanced dispatch system for firefighters and EMS'
+	description: 'The most poweful system emergency dispatch'
 }
 
 export default function RootLayout({
@@ -27,7 +25,7 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body
-				className={`${geistSans.className} ${robotoMono.className} antialiased text-white bg-zinc-950`}
+				className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
 			>
 				{children}
 			</body>
