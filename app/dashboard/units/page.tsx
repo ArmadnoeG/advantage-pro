@@ -1,3 +1,8 @@
+'use client'
+
+import { Button } from '@/components/ui/button'
+import { getData } from '@/lib/db/actions'
+
 export default function UnitsPage() {
 	return (
 		<>
