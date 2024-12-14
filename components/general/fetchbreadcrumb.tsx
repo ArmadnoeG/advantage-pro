@@ -12,7 +12,6 @@ import {
 
 export function DynamicBreadcrumb() {
 	const pathname = usePathname()
-
 	const pathParts = pathname.split('/').filter(part => part !== '')
 
 	const breadcrumbItems = pathParts.map((part, index) => {
@@ -22,9 +21,21 @@ export function DynamicBreadcrumb() {
 		return (
 			<BreadcrumbItem key={index}>
 				{isLast ?
-					<BreadcrumbPage>{part}</BreadcrumbPage> // Elemento sin enlace, ya que es el último
-				:	<BreadcrumbLink href={href}>{part}</BreadcrumbLink>}
-				{index < pathParts.length - 1 && <BreadcrumbSeparator />}
+					<BreadcrumbPage className='font-[family-name:var(--font-roboto-flex)]'>
+						{part}
+					</BreadcrumbPage>
+				:	<>
+						<BreadcrumbLink href={href}>{part}</BreadcrumbLink>
+						{index < pathParts.length - 1 && (
+							<span
+								className='mx-2'
+								aria-hidden='true'
+							>
+								/
+							</span>
+						)}
+					</>
+				}
 			</BreadcrumbItem>
 		)
 	})

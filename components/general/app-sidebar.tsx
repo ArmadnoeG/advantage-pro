@@ -13,7 +13,10 @@ import { SubmenuLinks } from '@/components/general/sidebar/submenu-links'
 
 export function AppSidebar() {
 	return (
-		<Sidebar collapsible='icon'>
+		<Sidebar
+			collapsible='icon'
+			className='font-[family-name:var(--font-roboto-flex)]'
+		>
 			<SidebarHeader>
 				<NavUser />
 			</SidebarHeader>

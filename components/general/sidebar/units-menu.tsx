@@ -22,7 +22,9 @@ export function UnitsMenu() {
 				defaultOpen
 			>
 				<CollapsibleTrigger className='flex items-center justify-between hover:bg-sidebar-accent w-full rounded-md'>
-					<SidebarGroupLabel>Unidades</SidebarGroupLabel>
+					<SidebarGroupLabel className='font-[family-name:var(--font-roboto-flex)]'>
+						Unidades
+					</SidebarGroupLabel>
 					<ChevronDown className='size-5 ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180' />
 				</CollapsibleTrigger>
 				<CollapsibleContent>

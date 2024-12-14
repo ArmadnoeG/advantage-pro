@@ -38,7 +38,7 @@ export function NavUser() {
 						<AvatarFallback>{USER_DATA.initials}</AvatarFallback>
 					</Avatar>
 					<div
-						className={`flex flex-col items-start overflow-hidden ${isCollapsed ? 'hidden' : ''} `}
+						className={`flex flex-col items-start overflow-hidden ${isCollapsed ? 'hidden' : ''} font-[family-name:var(--font-roboto-flex)]`}
 					>
 						<span className='font-medium'>{USER_DATA.name}</span>
 						<span className='text-xs text-muted-foreground'>

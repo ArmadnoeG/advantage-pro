@@ -14,7 +14,7 @@ export default function DashboardLayout({ children }: React.PropsWithChildren) {
 	return (
 		<SidebarProvider>
 			<AppSidebar />
-			<main>
+			<main className='font-[family-name:var(--font-roboto-flex)]'>
 				<div className='items-center flex gap-4'>
 					<SidebarTrigger />
 					<DynamicBreadcrumb />

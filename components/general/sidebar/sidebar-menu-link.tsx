@@ -18,7 +18,9 @@ export function SidebarMenuLink({
 			<Link href={href}>
 				<SidebarMenuButton className='flex items-center text-sidebar-foreground'>
 					<Icon className='mr-2 size-4' />
-					<span className='text-sidebar-foreground'>{label}</span>
+					<span className='text-sidebar-foreground font-[family-name:var(--font-roboto-flex)]'>
+						{label}
+					</span>
 				</SidebarMenuButton>
 			</Link>
 		</SidebarMenuItem>

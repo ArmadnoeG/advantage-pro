@@ -18,8 +18,10 @@ export function SubmenuLinks() {
 		<Collapsible className='group'>
 			<CollapsibleTrigger asChild>
 				<SidebarMenuButton>
-					<Settings />
-					Administrar unidades
+					<Settings className='mr-2' />
+					<span className='font-[family-name:var(--font-roboto-flex)]'>
+						Administrar unidades
+					</span>
 					<ChevronRight className='ml-auto transition-transform duration-400 group-data-[state=open]:rotate-90' />
 				</SidebarMenuButton>
 			</CollapsibleTrigger>
@@ -33,7 +35,9 @@ export function SubmenuLinks() {
 							key={label + 1}
 						>
 							<Icon className='mr-2 size-4' />
-							<span>{label}</span>
+							<span className='font-[family-name:var(--font-roboto-flex)]'>
+								{label}
+							</span>
 						</SidebarMenuSubButton>
 					))}
 				</SidebarMenuSub>
