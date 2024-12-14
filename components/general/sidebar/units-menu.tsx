@@ -11,14 +11,16 @@ import {
 	CollapsibleTrigger
 } from '@/components/ui/collapsible'
 import { CheckCircle2Icon, ChevronDown } from 'lucide-react'
-import Link from 'next/link'
 import { SidebarMenuLink } from './sidebar-menu-link'
 import { SubmenuLinks } from './submenu-links'
 
 export function UnitsMenu() {
 	return (
 		<SidebarGroup>
-			<Collapsible>
+			<Collapsible
+				className='group/collapsible'
+				defaultOpen
+			>
 				<CollapsibleTrigger className='flex items-center justify-between hover:bg-sidebar-accent w-full rounded-md'>
 					<SidebarGroupLabel>Unidades</SidebarGroupLabel>
 					<ChevronDown className='size-5 ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180' />
@@ -28,7 +30,7 @@ export function UnitsMenu() {
 						<SidebarMenuLink
 							icon={CheckCircle2Icon}
 							label='Disponibilidad'
-							href='#'
+							href='dashboard/units'
 						/>
 						<SubmenuLinks />
 					</SidebarMenu>

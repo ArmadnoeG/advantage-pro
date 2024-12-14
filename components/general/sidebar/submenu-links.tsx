@@ -3,7 +3,6 @@
 import {
 	SidebarMenuButton,
 	SidebarMenuSub,
-	SidebarMenuSubItem,
 	SidebarMenuSubButton
 } from '@/components/ui/sidebar'
 import {
@@ -11,17 +10,17 @@ import {
 	CollapsibleContent,
 	CollapsibleTrigger
 } from '@/components/ui/collapsible'
-import { SidebarMenuLink } from './sidebar-menu-link'
 import { HANDLE_UNITS } from '@/lib/configs/navigaition-sidebar'
-import { Settings } from 'lucide-react'
+import { ChevronRight, Settings } from 'lucide-react'
 
 export function SubmenuLinks() {
 	return (
-		<Collapsible defaultOpen>
+		<Collapsible className='group'>
 			<CollapsibleTrigger asChild>
 				<SidebarMenuButton>
 					<Settings />
 					Administrar unidades
+					<ChevronRight className='ml-auto transition-transform duration-400 group-data-[state=open]:rotate-90' />
 				</SidebarMenuButton>
 			</CollapsibleTrigger>
 
