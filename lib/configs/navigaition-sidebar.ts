@@ -3,7 +3,8 @@ import {
 	Settings,
 	CirclePlus,
 	OctagonMinus,
-	Wrench
+	Wrench,
+	CheckCircle2Icon
 } from 'lucide-react'
 
 export const HANDLE_UNITS = [
@@ -21,5 +22,12 @@ export const HANDLE_UNITS = [
 		icon: Wrench,
 		label: 'Configurar unidad',
 		href: '#'
+	}
+]
+export const UNITS = [
+	{
+		icon: CheckCircle2Icon,
+		label: 'Disponibilidad',
+		href: 'dashboard/units'
 	}
 ]
