@@ -1,6 +1,7 @@
 'use server'
 
 import { db } from './supabase'
+import { DBunit } from '@/types/db-types'
 
 export async function getData() {
   const { data, error } = await db
@@ -11,6 +12,6 @@ export async function getData() {
     console.log('Error fetching data: ', error)
   }
 
-  return data
+  return data as DBunit[]
   
 }

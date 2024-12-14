@@ -1,4 +1,5 @@
 import { getData } from '@/lib/db/actions'
+import { BoxUnit } from '@/components/units/box-unit'
 
 export async function GridUnits() {
 	const units = await getData()
@@ -16,8 +17,6 @@ export async function GridUnits() {
 		BM: filterUnits('BM'),
 		H: filterUnits('H')
 	}
-
-	console.log(Object.entries(filteredUnits))
 
 	return (
 		<>
@@ -38,14 +37,10 @@ export async function GridUnits() {
 							{unitType}
 						</h2>
 						{units.map(unit => (
-							<div
+							<BoxUnit
 								key={unit.id}
-								className='flex flex-col items-center justify-center bg-green-500  w-28 h-8 rounded-md cursor-pointer'
-							>
-								<h2 className='text-lg from-accent-foreground font-[family-name:var(--font-geist-sans)] pointer-events-none'>
-									{unit.name}
-								</h2>
-							</div>
+								unit={unit}
+							/>
 						))}
 					</div>
 				))}
