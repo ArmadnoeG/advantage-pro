@@ -10,9 +10,10 @@ import {
 	CollapsibleContent,
 	CollapsibleTrigger
 } from '@/components/ui/collapsible'
-import { CheckCircle2Icon, ChevronDown } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 import { SidebarMenuLink } from './sidebar-menu-link'
 import { SubmenuLinks } from './submenu-links'
+import { UNITS } from '@/lib/configs/navigaition-sidebar'
 
 export function UnitsMenu() {
 	return (
@@ -27,11 +28,14 @@ export function UnitsMenu() {
 				</CollapsibleTrigger>
 				<CollapsibleContent>
 					<SidebarMenu>
-						<SidebarMenuLink
-							icon={CheckCircle2Icon}
-							label='Disponibilidad'
-							href='dashboard/units'
-						/>
+						{UNITS.map(({ icon: Icon, label, href }) => (
+							<SidebarMenuLink
+								key={label + 1}
+								icon={Icon}
+								label={label}
+								href={href}
+							/>
+						))}
 						<SubmenuLinks />
 					</SidebarMenu>
 				</CollapsibleContent>
