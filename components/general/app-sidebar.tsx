@@ -1,27 +1,31 @@
+'use client'
+
 import {
 	Sidebar,
 	SidebarContent,
 	SidebarFooter,
-	SidebarHeader,
-	SidebarGroup
+	SidebarHeader
 } from '@/components/ui/sidebar'
 import { NavUser } from '@/components/general/nav-user'
 import { ModeToggle } from '@/components/general/theme-toggle'
+import { UnitsMenu } from '@/components/general/sidebar/units-menu'
+import { SubmenuLinks } from '@/components/general/sidebar/submenu-links'
 
 export function AppSidebar() {
 	return (
-		<Sidebar>
+		<Sidebar collapsible='icon'>
 			<SidebarHeader>
 				<NavUser />
 			</SidebarHeader>
 
 			<SidebarContent>
-				<SidebarGroup>hola</SidebarGroup>
+				<UnitsMenu />
 			</SidebarContent>
 
 			<SidebarFooter>
-				<ModeToggle />
-				<p className='text-sm text-muted-foreground'>chao</p>
+				<div className='flex justify-end'>
+					<ModeToggle />
+				</div>
 			</SidebarFooter>
 		</Sidebar>
 	)

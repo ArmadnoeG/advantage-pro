@@ -8,7 +8,8 @@ import {
 	DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { MENU_ITEMS } from '@/lib/configs/navigation'
+import { Fragment } from 'react'
+import { MENU_ITEMS } from '@/lib/configs/navigation-nav-user'
 
 const USER_DATA = {
 	name: 'Shadcn',
@@ -46,13 +47,13 @@ export function NavUser() {
 				<DropdownMenuSeparator />
 
 				{MENU_ITEMS.map(({ icon: Icon, label, separator }) => (
-					<>
-						<DropdownMenuItem key={label + 1}>
+					<Fragment key={label + 1}>
+						<DropdownMenuItem>
 							<Icon className='mr-2 h-4 w-4' />
 							<span>{label}</span>
 						</DropdownMenuItem>
 						{separator && <DropdownMenuSeparator />}
-					</>
+					</Fragment>
 				))}
 			</DropdownMenuContent>
 		</DropdownMenu>
