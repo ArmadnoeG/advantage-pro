@@ -7,7 +7,7 @@ const geistSans = Geist({
 	subsets: ['latin']
 })
 
-const geistMono = Roboto_Flex({
+const robotoFlex = Roboto_Flex({
 	variable: '--font-roboto-flex',
 	subsets: ['latin']
 })
@@ -25,7 +25,7 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
+				className={`${geistSans.variable} ${robotoFlex.variable} antialiased min-h-screen`}
 			>
 				{children}
 			</body>
