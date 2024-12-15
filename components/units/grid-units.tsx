@@ -5,7 +5,7 @@ import { useRealtimeUnits } from '@/hooks/useRealtimeUnits'
 import { BoxUnit } from '@/components/units/box-unit'
 
 export function GridUnits() {
-	const unitSpecialties = ['B', 'BR', 'R', 'BT', 'Z', 'BM', 'H']
+	const unitSpecialties = ['B', 'BR', 'R', 'BT', 'Z', 'BM', 'H', 'BX']
 	const units = useRealtimeUnits()
 
 	const filteredUnits = Object.fromEntries(
@@ -21,7 +21,7 @@ export function GridUnits() {
 				Unidades
 			</h2>
 
-			<div className='grid grid-cols-7 w-full gap-2 '>
+			<div className='grid grid-cols-8 w-full gap-2 '>
 				{Object.entries(filteredUnits).map(([unitType, units]) => (
 					<div
 						key={unitType}
