@@ -13,23 +13,25 @@ export function GridUnitsClient({ initialUnits }: { initialUnits: DBunit[] }) {
 	)
 
 	return (
-		<div className='grid grid-cols-8 w-full gap-2 '>
-			{Object.entries(filteredUnits).map(([unitType, units]) => (
-				<div
-					key={unitType}
-					className='flex flex-col gap-2 items-center border-x-[1px] border-border p-2'
-				>
-					<h2 className='text-xl font-semibold text-muted-foreground pb-8'>
-						{unitType}
-					</h2>
-					{units.map(unit => (
-						<BoxUnit
-							key={unit.id}
-							unit={unit}
-						/>
-					))}
-				</div>
-			))}
-		</div>
+		<>
+			<div className='grid grid-cols-8 w-full gap-2 '>
+				{Object.entries(filteredUnits).map(([unitType, units]) => (
+					<div
+						key={unitType}
+						className='flex flex-col gap-2 items-center border-x-[1px] border-border p-2'
+					>
+						<h2 className='text-xl font-semibold text-muted-foreground pb-8'>
+							{unitType}
+						</h2>
+						{units.map(unit => (
+							<BoxUnit
+								key={unit.id}
+								unit={unit}
+							/>
+						))}
+					</div>
+				))}
+			</div>
+		</>
 	)
 }

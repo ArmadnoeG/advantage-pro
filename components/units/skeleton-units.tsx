@@ -6,11 +6,11 @@ export function GridSkeleton() {
 					key={i}
 					className='flex flex-col gap-2 items-center border-x-[1px] border-border p-2'
 				>
-					<div className='h-6 w-16 bg-gray-200 rounded animate-pulse mb-8' />
+					<div className='h-4 w-16 bg-muted rounded-full animate-pulse mb-8' />
 					{Array.from({ length: 4 }).map((_, j) => (
 						<div
 							key={j}
-							className='h-8 w-[80%] bg-gray-200 rounded animate-pulse'
+							className='h-8 w-[80%] bg-muted rounded-md animate-pulse'
 						/>
 					))}
 				</div>
