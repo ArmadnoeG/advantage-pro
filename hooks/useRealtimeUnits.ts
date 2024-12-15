@@ -18,10 +18,8 @@ export function useRealtimeUnits(initialUnits: DBunit[]) {
         })
       }
     }
-
     
     fetchData()
-
     
     const channel = db
       .channel('listen-cqbo-cars')
