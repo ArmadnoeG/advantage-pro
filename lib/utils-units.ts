@@ -18,3 +18,5 @@ export const colorStatus = (status: string) => {
 export const filterUnits = (data: DBunit[], unitType: string) => {
 	return data.filter(data => data.type === unitType)
 }
+
+export const UNITS_TYPES = ['B', 'BR', 'R', 'BT', 'Z', 'BM', 'H', 'BX']
