@@ -3,7 +3,7 @@
 import { db } from './supabase'
 import { DBunit } from '@/types/db-types'
 
-export async function getData() {
+export async function getUnits() {
   const { data, error } = await db
   .from('cqbo-cars')
   .select('*')

@@ -1,22 +1,16 @@
-import { getData } from '@/lib/db/actions'
+'use client'
+
+import { filterUnits } from '@/lib/utils-units'
+import { useRealtimeUnits } from '@/hooks/useRealtimeUnits'
 import { BoxUnit } from '@/components/units/box-unit'
 
-export async function GridUnits() {
-	const units = await getData()
-	if (!units) return null
+export function GridUnits() {
+	const unitSpecialties = ['B', 'BR', 'R', 'BT', 'Z', 'BM', 'H']
+	const units = useRealtimeUnits()
 
-	const filterUnits = (unitType: string) => {
-		return units.filter(units => units.type === unitType)
-	}
-	const filteredUnits = {
-		B: filterUnits('B'),
-		BR: filterUnits('BR'),
-		R: filterUnits('R'),
-		BT: filterUnits('BT'),
-		Z: filterUnits('Z'),
-		BM: filterUnits('BM'),
-		H: filterUnits('H')
-	}
+	const filteredUnits = Object.fromEntries(
+		unitSpecialties.map(specialty => [specialty, filterUnits(units, specialty)])
+	)
 
 	return (
 		<>
