@@ -1,7 +1,22 @@
 import { DBunit } from '@/types/db-types'
-import { colorStatus } from '@/lib/utils-units'
+// import { colorStatus } from '@/lib/utils-units' extraer funcion usar mediante import
 
 export function BoxUnit({ unit }: { unit: DBunit }) {
+	const colorStatus = (status: string) => {
+		switch (status) {
+			case '0-8':
+				return 'bg-red-500'
+			case '0-9':
+				return 'bg-green-500'
+			case 'no-driver':
+				return 'bg-yellow-500'
+			case 'dispatched':
+				return 'bg-blue-500'
+			default:
+				return 'bg-gray-500'
+		}
+	}
+
 	return (
 		<div
 			key={unit.id}
