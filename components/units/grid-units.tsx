@@ -3,6 +3,7 @@ import { GridUnitsClient } from './grid-units-client'
 import { Suspense } from 'react'
 import { GridSkeleton } from './skeleton-units'
 
+
 export async function GridUnits() {
 	const initialUnits = await getUnits() // Consulta inicial en el servidor
 	return (
