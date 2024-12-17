@@ -2,10 +2,11 @@ import {
 	SheetDescription,
 	SheetHeader,
 	SheetTitle,
-	SheetFooter,
 	SheetContent
 } from '../ui/sheet'
 import { DBunit } from '@/types/db-types'
+import { colorStatus } from '@/lib/configs/utils-units'
+import { ButtonBoxInModal } from './button-box-modal'
 
 export function ModalHandleUnits({ unit }: { unit: DBunit }) {
 	if (!unit) return null
@@ -13,9 +14,16 @@ export function ModalHandleUnits({ unit }: { unit: DBunit }) {
 		<SheetContent>
 			<SheetHeader className='flex font-[family-name:var(--font-roboto-flex)]'>
 				<SheetTitle>
-					<span className='py-2 px-4'>{unit.name}</span>
+					<span className={`${colorStatus(unit.status)} px-8 py-1 rounded-lg`}>
+						{unit.name}
+					</span>
 				</SheetTitle>
+				<SheetDescription className='border-b-[1px] border-border py-2'>
+					{unit.model}
+				</SheetDescription>
 			</SheetHeader>
+
+			<ButtonBoxInModal unit={unit} />
 		</SheetContent>
 	)
 }
