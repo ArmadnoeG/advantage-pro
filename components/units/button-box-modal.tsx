@@ -76,7 +76,7 @@ export function ButtonBoxInModal({ unit }: { unit: DBunit }) {
 					</ToggleGroup>
 				</div>
 			</div>
-			<p className='text-sm text-muted-foreground font-[family-name:var(--font-roboto-flex)]'>
+			<p className='text-sm text-muted-foreground font-[family-name:var(--font-roboto-flex)] pb-2'>
 				Seleccione un conductor:
 			</p>
 			<InputAutocomplete
@@ -84,7 +84,7 @@ export function ButtonBoxInModal({ unit }: { unit: DBunit }) {
 				styles={`${isAvailable ? 'opacity-100 pointer-events-auto' : 'opacity-50 pointer-events-none'} w-full`}
 				onSelect={setSelectedDriver}
 			/>
-			<div className='flex gap-2 w-full flex-col border-b-[1px] border-border pb-3'>
+			<div className='flex gap-2 w-full flex-col border-b-[1px] border-border py-3'>
 				<Button
 					type='submit'
 					className='w-full mt-2'

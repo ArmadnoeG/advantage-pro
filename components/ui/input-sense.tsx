@@ -19,16 +19,19 @@ export function InputAutocomplete({
 	const [drivers, setDrivers] = useState<DBdrivers[] | []>([])
 	const [value, setValue] = useState(unit.driver || '')
 	const [searchTerm, setSearchTerm] = useState('')
+	const [loading, setLoading] = useState(false)
 	const wrappedRef = useRef(null)
 
 	useEffect(() => {
 		const fetchDrivers = async () => {
+			setLoading(true)
 			const fetchDrivers = await getDrivers()
 			if (!fetchDrivers || !Array.isArray(fetchDrivers)) return
 			const filteredDrivers = fetchDrivers.filter(
 				driver => driver.authorize === unit.name
 			)
 			setDrivers(filteredDrivers)
+			setLoading(false)
 		}
 		fetchDrivers()
 
@@ -63,11 +66,13 @@ export function InputAutocomplete({
 	return (
 		<>
 			<div ref={wrappedRef}>
-				<div className='relative w-full py-3'>
+				<div className='relative w-full '>
 					<Input
 						className={`${styles} font-[family-name:var(--font-roboto-flex)] w-full text-foregound`}
 						value={open ? searchTerm : value}
-						placeholder='Ingresa el nombre del conductor'
+						placeholder={
+							loading ? 'Cargando conductores...' : 'Selecciona un conductor'
+						}
 						onChange={e => setSearchTerm(e.target.value)}
 						onFocus={() => {
 							setOpen(true)
@@ -75,12 +80,13 @@ export function InputAutocomplete({
 						}}
 						autoComplete='off'
 					/>
+
 					<Search className='absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground size-4' />
 				</div>
 
 				{open && (
 					<div
-						className={`absolute z-[9999] mt-1 w-[90%] rounded-md bg-background border border-border shadow-md font-[family-name:var(--font-roboto-flex)] text-foregound ${open ? 'animate-fade-in' : 'animate-fade-out'} animate-duration-200`}
+						className={`absolute z-[9999] w-[90%] mt-1 rounded-md bg-background border border-border shadow-md font-[family-name:var(--font-roboto-flex)] text-foregound ${open ? 'animate-fade-in' : 'animate-fade-out'} animate-duration-200`}
 					>
 						{!drivers.length ?
 							<p className='p-2 text-center text-muted-foreground'>
