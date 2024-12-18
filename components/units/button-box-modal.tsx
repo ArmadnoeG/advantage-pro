@@ -4,7 +4,7 @@ import { UNITS_STATUS, UNITS_EVENTS } from '@/lib/configs/utils-units'
 import { DBunit } from '@/types/db-types'
 import { InputAutocomplete } from '@/components/ui/input-sense'
 import { Button } from '@/components/ui/button'
-import { updateUnit } from '@/lib/db/actions'
+import { updateUnit } from '@/lib/db/actions/update'
 
 export function ButtonBoxInModal({ unit }: { unit: DBunit }) {
 	const [selectedStatus, setSelectedStatus] = useState<string>(unit.status)
