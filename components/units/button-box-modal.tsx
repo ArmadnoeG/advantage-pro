@@ -2,6 +2,7 @@ import { Toggle } from '@/components/ui/toggle'
 import { useState, useEffect } from 'react'
 import { UNITS_STATUS } from '@/lib/configs/utils-units'
 import { DBunit } from '@/types/db-types'
+import { InputAutocomplete } from '@/components/ui/input-sense'
 
 export function ButtonBoxInModal({ unit }: { unit: DBunit }) {
 	const [selectedStatus, setSelectedStatus] = useState<string>('')
@@ -15,7 +16,8 @@ export function ButtonBoxInModal({ unit }: { unit: DBunit }) {
 			<p className='my-2 text-sm text-muted-foreground'>
 				Condición de la unidad:
 			</p>
-			<div className='flex gap-2 items-center justify-center w-full mt-3'>
+
+			<div className='flex gap-2 items-center justify-center w-full mt-3 border-border border-b-[1px]'>
 				{UNITS_STATUS.map(condition => (
 					<Toggle
 						key={condition.value}
@@ -27,6 +29,10 @@ export function ButtonBoxInModal({ unit }: { unit: DBunit }) {
 					</Toggle>
 				))}
 			</div>
+			<InputAutocomplete
+				unit={unit}
+				styles='w-full mt-2'
+			/>
 		</>
 	)
 }

@@ -7,3 +7,9 @@ export interface DBunit {
   km: number
   model: string
 }
+export interface DBdrivers {
+  id: number
+  name: string
+  company?: string
+  authorize: string
+}
