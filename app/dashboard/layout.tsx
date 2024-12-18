@@ -1,13 +1,5 @@
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 import { AppSidebar } from '@/components/general/app-sidebar'
-import {
-	Breadcrumb,
-	BreadcrumbList,
-	BreadcrumbItem,
-	BreadcrumbLink,
-	BreadcrumbSeparator,
-	BreadcrumbPage
-} from '@/components/ui/breadcrumb'
 import { DynamicBreadcrumb } from '@/components/general/fetchbreadcrumb'
 
 export default function DashboardLayout({ children }: React.PropsWithChildren) {

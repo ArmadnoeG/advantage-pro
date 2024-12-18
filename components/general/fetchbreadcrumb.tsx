@@ -9,6 +9,7 @@ import {
 	BreadcrumbSeparator,
 	BreadcrumbPage
 } from '@/components/ui/breadcrumb'
+import { ChevronRight } from 'lucide-react'
 
 export function DynamicBreadcrumb() {
 	const pathname = usePathname()
@@ -31,7 +32,7 @@ export function DynamicBreadcrumb() {
 								className='mx-2'
 								aria-hidden='true'
 							>
-								/
+								<ChevronRight className='text-muted-foreground size-4' />
 							</span>
 						)}
 					</>
