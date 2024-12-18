@@ -31,16 +31,19 @@ export async function getDrivers() {
     authorize: driver.authorize,
 }))
 }
-export async function updateUnitDriver (driver: DBdrivers, unit: DBunit) {
+export async function updateUnit ({driver, status, event, unit}: {driver?: string, status?: string, event?: string, unit: DBunit}) {
   const { data, error } = await db
   .from('cqbo-cars')
-  .update({driver: driver.name})
+  .update({
+    driver: driver && driver,
+    status: status && status,
+    event: event && event
+    })
   .eq('id', unit.id)
 
   if (error) {
     console.log('Error en la obtencion de conductores')
   }
-  console.log('acuualizacion Exitosa')
 
   return data
 }

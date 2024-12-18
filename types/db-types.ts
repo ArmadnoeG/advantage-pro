@@ -6,6 +6,7 @@ export interface DBunit {
   driver: string
   km: number
   model: string
+  event: '6-13' | '6-14' | '6-10'
 }
 export interface DBdrivers {
   id: number

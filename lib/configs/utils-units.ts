@@ -20,8 +20,14 @@ export const filterUnits = (data: DBunit[], unitType: string) => {
 }
 
 export const UNITS_TYPES = ['B', 'BR', 'R', 'BT', 'Z', 'BM', 'H', 'BX']
+
 export const UNITS_STATUS = [
-	{ label: 'Unidad 0-9', value: '0-9' },
-	{ label: 'Unidad 0-8', value: '0-8' },
-	{ label: 'Unidad F-S', value: 'f-s' }
+	{ label: '0-9', value: '0-9' },
+	{ label: '0-8', value: '0-8' },
+	{ label: 'F-S', value: 'f-s' }
+]
+export const UNITS_EVENTS = [
+	{ label: '6-13', value: '6-13' },
+	{ label: '6-14', value: '6-14' },
+	{ label: '6-10', value: '6-10' }
 ]
