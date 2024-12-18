@@ -6,17 +6,30 @@ import { InputAutocomplete } from '@/components/ui/input-sense'
 import { Button } from '@/components/ui/button'
 import { updateUnit } from '@/lib/db/actions/update'
 import { Siren } from 'lucide-react'
+import { useNotificationStore } from '@/stores/useNotificationStore'
 
 export function ButtonBoxInModal({ unit }: { unit: DBunit }) {
 	const [selectedStatus, setSelectedStatus] = useState<string>(unit.status)
 	const [selectedEvent, setSelectedEvent] = useState<string>(unit.event)
 	const [selectedDriver, setSelectedDriver] = useState<string>('')
-
-	console.log(selectedDriver)
+	const { setNotification } = useNotificationStore()
 
 	const isAvailable =
 		(selectedStatus !== '0-9' && selectedEvent !== '6-10') ||
 		selectedStatus === '0-9'
+
+	const handleUpdateUnit = async () => {
+		const response = await updateUnit({
+			driver: selectedDriver,
+			status: selectedStatus,
+			event: selectedEvent,
+			unit
+		})
+		setNotification({
+			message: response.message,
+			success: response.success
+		})
+	}
 
 	return (
 		<>
@@ -75,14 +88,7 @@ export function ButtonBoxInModal({ unit }: { unit: DBunit }) {
 				<Button
 					type='submit'
 					className='w-full mt-2'
-					onClick={() =>
-						updateUnit({
-							driver: selectedDriver,
-							status: selectedStatus,
-							event: selectedEvent,
-							unit
-						})
-					}
+					onClick={() => handleUpdateUnit()}
 				>
 					Confirmar
 				</Button>
