@@ -14,7 +14,7 @@ export function ButtonBoxInModal({ unit }: { unit: DBunit }) {
 	console.log(selectedDriver)
 
 	const isAvailable =
-		(selectedStatus === '0-8' && selectedEvent !== '6-10') ||
+		(selectedStatus !== '0-9' && selectedEvent !== '6-10') ||
 		selectedStatus === '0-9'
 
 	return (

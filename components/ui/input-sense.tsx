@@ -2,7 +2,7 @@
 'use client'
 import { useState, useEffect, useRef, useMemo } from 'react'
 import { DBunit, DBdrivers } from '@/types/db-types'
-import { getDrivers } from '@/lib/db/actions'
+import { getDrivers } from '@/lib/db/actions/read'
 import { CheckCircle2, Search } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 
@@ -24,7 +24,7 @@ export function InputAutocomplete({
 	useEffect(() => {
 		const fetchDrivers = async () => {
 			const fetchDrivers = await getDrivers()
-			if (!fetchDrivers) return
+			if (!fetchDrivers || !Array.isArray(fetchDrivers)) return
 			const filteredDrivers = fetchDrivers.filter(
 				driver => driver.authorize === unit.name
 			)
