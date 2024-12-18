@@ -18,7 +18,7 @@ export const useNotificationStore = create<NotificationStore>((set) => ({
   // Actions
   setNotification: (notification: Notification) => {
     set({ notification });
-    setTimeout(() => set({ notification: null }), 5000); // Auto-clear after 5 seconds
+    setTimeout(() => set({ notification: null }), 3000); // Auto-clear after 5 seconds
   },
   clearNotification: () => set({ notification: null }),
 }));
