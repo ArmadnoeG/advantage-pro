@@ -5,6 +5,7 @@ import { DBunit } from '@/types/db-types'
 import { InputAutocomplete } from '@/components/ui/input-sense'
 import { Button } from '@/components/ui/button'
 import { updateUnit } from '@/lib/db/actions/update'
+import { Siren } from 'lucide-react'
 
 export function ButtonBoxInModal({ unit }: { unit: DBunit }) {
 	const [selectedStatus, setSelectedStatus] = useState<string>(unit.status)
@@ -23,7 +24,7 @@ export function ButtonBoxInModal({ unit }: { unit: DBunit }) {
 				Condición de la unidad:
 			</p>
 
-			<div className='flex flex-col gap-2 items-center justify-center w-full my-3 border-border border-b-[1px]'>
+			<div className='flex flex-col gap-1 items-center justify-center w-full my-3'>
 				<div className='w-full'>
 					<ToggleGroup
 						type='single'
@@ -53,7 +54,7 @@ export function ButtonBoxInModal({ unit }: { unit: DBunit }) {
 						{UNITS_EVENTS.map(event => (
 							<ToggleGroupItem
 								key={event.value}
-								className=' w-[40%] h-10 border-border border-[1px] font-[family-name:var(--font-roboto-flex)] mb-3'
+								className=' w-[40%] h-10 border-border border-[1px] font-[family-name:var(--font-roboto-flex)] '
 								value={event.value}
 							>
 								{event.label}
@@ -62,26 +63,37 @@ export function ButtonBoxInModal({ unit }: { unit: DBunit }) {
 					</ToggleGroup>
 				</div>
 			</div>
+			<p className='text-sm text-muted-foreground font-[family-name:var(--font-roboto-flex)]'>
+				Seleccione un conductor:
+			</p>
 			<InputAutocomplete
 				unit={unit}
 				styles={`${isAvailable ? 'opacity-100 pointer-events-auto' : 'opacity-50 pointer-events-none'} w-full`}
 				onSelect={setSelectedDriver}
 			/>
+			<div className='flex gap-2 w-full flex-col border-b-[1px] border-border pb-3'>
+				<Button
+					type='submit'
+					className='w-full mt-2'
+					onClick={() =>
+						updateUnit({
+							driver: selectedDriver,
+							status: selectedStatus,
+							event: selectedEvent,
+							unit
+						})
+					}
+				>
+					Confirmar
+				</Button>
 
-			<Button
-				type='submit'
-				className='w-full mt-2'
-				onClick={() =>
-					updateUnit({
-						driver: selectedDriver,
-						status: selectedStatus,
-						event: selectedEvent,
-						unit
-					})
-				}
-			>
-				Confirmar
-			</Button>
+				<Button
+					variant='destructive'
+					className={`${unit.status === '0-9' ? 'opacity-100 pointer-events-auto' : 'opacity-50 pointer-events-none'} w-full`}
+				>
+					Despachar unidad <Siren className='text-white size-4' />
+				</Button>
+			</div>
 		</>
 	)
 }

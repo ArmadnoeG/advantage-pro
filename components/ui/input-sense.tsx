@@ -63,7 +63,7 @@ export function InputAutocomplete({
 	return (
 		<>
 			<div ref={wrappedRef}>
-				<div className='relative w-[300px]'>
+				<div className='relative w-full py-3'>
 					<Input
 						className={`${styles} font-[family-name:var(--font-roboto-flex)] w-full text-foregound`}
 						value={open ? searchTerm : value}
@@ -80,7 +80,7 @@ export function InputAutocomplete({
 
 				{open && (
 					<div
-						className={`absolute z-[9999] mt-1 w-[300px] rounded-md bg-background border border-border shadow-md font-[family-name:var(--font-roboto-flex)] text-foregound ${open ? 'animate-fade-in' : 'animate-fade-out'} animate-duration-200`}
+						className={`absolute z-[9999] mt-1 w-[90%] rounded-md bg-background border border-border shadow-md font-[family-name:var(--font-roboto-flex)] text-foregound ${open ? 'animate-fade-in' : 'animate-fade-out'} animate-duration-200`}
 					>
 						{!drivers.length ?
 							<p className='p-2 text-center text-muted-foreground'>

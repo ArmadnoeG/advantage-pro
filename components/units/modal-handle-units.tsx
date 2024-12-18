@@ -24,6 +24,14 @@ export function ModalHandleUnits({ unit }: { unit: DBunit }) {
 			</SheetHeader>
 
 			<ButtonBoxInModal unit={unit} />
+
+			<div>
+				<h3 className='text-sm text-muted-foreground font-[family-name:var(--font-roboto-flex)] my-3'>
+					Ubicacion
+				</h3>
+
+				<div className='h-[200px] w-full bg-muted rounded-lg'></div>
+			</div>
 		</SheetContent>
 	)
 }
