@@ -17,7 +17,11 @@ export async function getUnits() {
     }
   }
 
-  return data as DBunit[] 
+  return {
+    message: 'Unidades obtenidas exitosamente',
+    success: true,
+    data: data as DBunit[]
+  }
   
 }
 

@@ -9,14 +9,14 @@ export function useRealtimeUnits(initialUnits: DBunit[]) {
   useEffect(() => {
     
     const fetchData = async () => {
-      const data = await getUnits()
+      const { data } = await getUnits()
       if (data && Array.isArray(data)) {
-        
+        console.log(data)
         setUnits(prevUnits => {
           const newUnits = data.filter(unit => !prevUnits.some(u => u.id === unit.id))
           return [...prevUnits, ...newUnits]
         })
-      }
+      } 
     }
     
     fetchData()
