@@ -49,6 +49,10 @@ export function InputAutocomplete({
 		}
 	}, [])
 
+	useEffect(() => {
+		setValue(unit.driver || '')
+	}, [unit])
+
 	const handleSelect = (driver: DBdrivers) => {
 		setValue(driver.name)
 		onSelect(driver.name)

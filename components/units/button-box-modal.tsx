@@ -1,5 +1,5 @@
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { UNITS_STATUS, UNITS_EVENTS } from '@/lib/configs/utils-units'
 import { DBunit } from '@/types/db-types'
 import { InputAutocomplete } from '@/components/ui/input-sense'
@@ -8,35 +8,55 @@ import { updateUnit } from '@/lib/db/actions/update'
 import { Siren } from 'lucide-react'
 import { useNotificationStore } from '@/stores/useNotificationStore'
 
+interface Options {
+	status: string
+	event: string
+	driver: string
+}
+
 export function ButtonBoxInModal({ unit }: { unit: DBunit }) {
-	const [selectedStatus, setSelectedStatus] = useState<string>(unit.status)
-	const [selectedEvent, setSelectedEvent] = useState<string>(unit.event)
-	const [selectedDriver, setSelectedDriver] = useState<string>(
-		unit.driver || ''
-	)
-	const [isChanged, setIsChanged] = useState<boolean>(false)
 	const { setNotification } = useNotificationStore()
 
-	// Validar cambios en los valores
+	// Estados locales
+	const [formData, setFormData] = useState<Options>({
+		status: unit.status,
+		event: unit.event,
+		driver: unit.driver || ''
+	})
+	const [isChanged, setIsChanged] = useState(false)
+
+	// Validar cambios
 	useEffect(() => {
-		const hasChanges =
-			selectedStatus !== unit.status ||
-			selectedEvent !== unit.event ||
-			selectedDriver !== (unit.driver || '')
-		setIsChanged(hasChanges)
-	}, [selectedStatus, selectedEvent, selectedDriver, unit])
+		setIsChanged(
+			formData.status !== unit.status ||
+				formData.event !== unit.event ||
+				formData.driver !== (unit.driver || '')
+		)
+	}, [formData, unit])
 
-	// Condición para habilitar el botón de confirmación
-	const canSubmit =
-		isChanged &&
-		(selectedStatus !== '0-9' || (selectedStatus === '0-9' && selectedDriver))
+	// Validar envío del formulario
+	const canSubmit = useMemo(() => {
+		if (!isChanged) return false
+		if (formData.status === '0-9' && !formData.driver) return false
+		return true
+	}, [isChanged, formData])
 
-	// Condición para habilitar el botón de despachar
-	const isAvailable =
-		(selectedStatus !== '0-9' && selectedEvent !== '6-10') ||
-		selectedStatus === '0-9'
+	// Condición para habilitar la selección de conductor
+	const isDriverAvailable = useMemo(() => {
+		return (
+			formData.status === '0-9' ||
+			(formData.status !== '0-9' && formData.event !== '6-10')
+		)
+	}, [formData])
 
+	// Manejador de actualizaciones
 	const handleUpdateUnit = async () => {
+		if (
+			(formData.status === '0-9' || formData.status === 'F-S') &&
+			formData.event === '6-10'
+		) {
+			setFormData({ ...formData, driver: '' })
+		}
 		if (!isChanged) {
 			setNotification({
 				message: 'No se detectaron cambios en la unidad.',
@@ -44,26 +64,22 @@ export function ButtonBoxInModal({ unit }: { unit: DBunit }) {
 			})
 			return
 		}
-		if (selectedStatus === '0-9' && !selectedDriver) {
-			setNotification({
-				message:
-					'Debe asignar un conductor si la unidad está disponible (0-9).',
-				success: false
-			})
-			return
-		}
-
 		const response = await updateUnit({
-			driver: selectedDriver,
-			status: selectedStatus,
-			event: selectedEvent,
+			...formData,
 			unit
 		})
-
 		setNotification({
 			message: response.message,
 			success: response.success
 		})
+	}
+
+	// Actualización del estado del formulario
+	const handleChange = (field: keyof typeof formData, value: string) => {
+		setFormData(prev => ({
+			...prev,
+			[field]: value
+		}))
 	}
 
 	return (
@@ -73,68 +89,65 @@ export function ButtonBoxInModal({ unit }: { unit: DBunit }) {
 			</p>
 
 			<div className='flex flex-col gap-1 items-center justify-center w-full my-3'>
-				{/* Selección de estado */}
 				<div className='w-full'>
 					<ToggleGroup
 						type='single'
-						value={selectedStatus}
+						value={formData.status}
 						className='flex gap-2 w-full'
-						onValueChange={setSelectedStatus}
+						onValueChange={value => handleChange('status', value)}
 					>
-						{UNITS_STATUS.map(status => (
+						{UNITS_STATUS.map(({ value, label }) => (
 							<ToggleGroupItem
-								key={status.value}
+								key={value}
+								value={value}
 								className='w-[40%] h-10 border-border border-[1px] font-[family-name:var(--font-roboto-flex)] mb-3'
-								value={status.value}
 							>
-								{status.label}
+								{label}
 							</ToggleGroupItem>
 						))}
 					</ToggleGroup>
 				</div>
 
-				{/* Selección de evento */}
 				<div className='w-full'>
 					<ToggleGroup
 						type='single'
-						value={selectedEvent}
+						value={formData.event}
 						className='flex gap-2 w-full'
-						onValueChange={setSelectedEvent}
+						onValueChange={value => handleChange('event', value)}
 					>
-						{UNITS_EVENTS.map(event => (
+						{UNITS_EVENTS.map(({ value, label }) => (
 							<ToggleGroupItem
-								key={event.value}
+								key={value}
+								value={value}
 								className='w-[40%] h-10 border-border border-[1px] font-[family-name:var(--font-roboto-flex)]'
-								value={event.value}
 							>
-								{event.label}
+								{label}
 							</ToggleGroupItem>
 						))}
 					</ToggleGroup>
 				</div>
 			</div>
 
-			{/* Selección de conductor */}
 			<p className='text-sm text-muted-foreground font-[family-name:var(--font-roboto-flex)] pb-2'>
 				Seleccione un conductor:
 			</p>
+
 			<InputAutocomplete
 				unit={unit}
 				styles={`${
-					isAvailable ?
+					isDriverAvailable ?
 						'opacity-100 pointer-events-auto'
 					:	'opacity-50 pointer-events-none'
 				} w-full`}
-				onSelect={setSelectedDriver}
+				onSelect={value => handleChange('driver', value)}
 			/>
 
-			{/* Botones de acciones */}
 			<div className='flex gap-2 w-full flex-col border-b-[1px] border-border py-3'>
 				<Button
 					type='submit'
 					className='w-full mt-2'
 					onClick={handleUpdateUnit}
-					disabled={!canSubmit} // Deshabilitar si no se puede enviar
+					disabled={!canSubmit}
 				>
 					Confirmar
 				</Button>
