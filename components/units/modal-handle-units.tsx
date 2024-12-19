@@ -7,6 +7,7 @@ import {
 import { DBunit } from '@/types/db-types'
 import { colorStatus } from '@/lib/configs/utils-units'
 import { ButtonBoxInModal } from './button-box-modal'
+import { MapPin } from 'lucide-react'
 
 export function ModalHandleUnits({ unit }: { unit: DBunit }) {
 	if (!unit) return null
@@ -26,9 +27,12 @@ export function ModalHandleUnits({ unit }: { unit: DBunit }) {
 			<ButtonBoxInModal unit={unit} />
 
 			<div>
-				<h3 className='text-sm text-muted-foreground font-[family-name:var(--font-roboto-flex)] my-3'>
-					Ubicacion
-				</h3>
+				<div className='flex items-center gap-2 w-full'>
+					<MapPin className='text-muted-foreground size-4' />
+					<h3 className='text-sm text-muted-foreground font-[family-name:var(--font-roboto-flex)] my-3'>
+						Ubicacion
+					</h3>
+				</div>
 
 				<div className='h-[200px] w-full bg-muted rounded-lg'></div>
 			</div>

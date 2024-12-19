@@ -16,7 +16,7 @@ export async function updateUnit ({driver, status, event, unit}: {driver?: strin
   if (error) {
     return {
       message: `Hubo un error al actualizar la unidad el error proviene del servidor. pongase en contacto con un supervisor de inmediato. ${error.code}`,
-      success: false
+      success: false,
     }
   }
 

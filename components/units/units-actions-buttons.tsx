@@ -1,14 +1,17 @@
 import { Button } from '@/components/ui/button'
 import { Siren } from 'lucide-react'
+import { Loader2 } from 'lucide-react'
 
 export const ActionButtons = ({
 	onUpdate,
 	canSubmit,
-	isUnitActive
+	isUnitActive,
+	loading
 }: {
 	onUpdate: () => void
 	canSubmit: boolean
 	isUnitActive: boolean
+	loading: boolean
 }) => {
 	return (
 		<div className='flex gap-2 w-full flex-col border-b-[1px] border-border py-3'>
@@ -18,7 +21,9 @@ export const ActionButtons = ({
 				onClick={onUpdate}
 				disabled={!canSubmit}
 			>
-				Confirmar
+				{loading ?
+					<Loader2 className='animate-spin-clockwise animate-iteration-count-infinite text-white size-5' />
+				:	'Confirmar'}
 			</Button>
 
 			<Button

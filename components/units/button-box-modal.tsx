@@ -4,9 +4,11 @@ import { UnitStatusToggle } from './unit-status-toggle'
 import { UnitEventToggle } from './units-events-toggle'
 import { InputAutocomplete } from '@/components/ui/input-sense'
 import { DBunit } from '@/types/db-types'
+import { Settings2, UserRound } from 'lucide-react'
 
 export function ButtonBoxInModal({ unit }: { unit: DBunit }) {
 	const {
+		loading,
 		formData,
 		canSubmit,
 		isDriverAvailable,
@@ -16,9 +18,12 @@ export function ButtonBoxInModal({ unit }: { unit: DBunit }) {
 
 	return (
 		<>
-			<p className='my-2 text-sm text-muted-foreground font-[family-name:var(--font-roboto-flex)]'>
-				Condición de la unidad:
-			</p>
+			<div className='flex items-center gap-2 w-full'>
+				<Settings2 className='text-muted-foreground size-4' />
+				<p className='my-2 text-sm text-muted-foreground font-[family-name:var(--font-roboto-flex)]'>
+					Condición de la unidad:
+				</p>
+			</div>
 
 			<div className='flex flex-col gap-1 items-center justify-center w-full my-3'>
 				<div className='w-full'>
@@ -35,14 +40,16 @@ export function ButtonBoxInModal({ unit }: { unit: DBunit }) {
 					/>
 				</div>
 			</div>
-
-			<p className='text-sm text-muted-foreground font-[family-name:var(--font-roboto-flex)] pb-2'>
-				Seleccione un conductor:
-			</p>
+			<div className='flex items-center gap-2 w-full'>
+				<UserRound className='text-muted-foreground size-4' />
+				<p className='text-sm text-muted-foreground font-[family-name:var(--font-roboto-flex)] '>
+					Seleccione un conductor:
+				</p>
+			</div>
 
 			<InputAutocomplete
 				unit={unit}
-				styles={`${isDriverAvailable ? 'opacity-100 pointer-events-auto' : 'opacity-50 pointer-events-none'} w-full`}
+				styles={`${isDriverAvailable ? 'opacity-100 pointer-events-auto' : 'opacity-50 pointer-events-none'} w-full mt-1`}
 				onSelect={value => handleChange('driver', value)}
 			/>
 
@@ -50,6 +57,7 @@ export function ButtonBoxInModal({ unit }: { unit: DBunit }) {
 				onUpdate={handleUpdateUnit}
 				canSubmit={canSubmit}
 				isUnitActive={formData.status === '0-9'}
+				loading={loading}
 			/>
 		</>
 	)

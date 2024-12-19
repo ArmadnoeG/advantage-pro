@@ -11,6 +11,7 @@ interface Options {
 
 export const useUnitForm = (unit: DBunit) => {
 	const { setNotification } = useNotificationStore()
+	const [loading, setLoading] = useState(false)
 	const [formData, setFormData] = useState<Options>({
 		status: unit.status,
 		event: unit.event,
@@ -47,6 +48,7 @@ export const useUnitForm = (unit: DBunit) => {
 	}
 
 	const handleUpdateUnit = async () => {
+		setLoading(true)
 		if (!isChanged) {
 			setNotification({
 				message: 'No se detectaron cambios en la unidad.',
@@ -61,13 +63,6 @@ export const useUnitForm = (unit: DBunit) => {
 			(updatedData.status === '0-8' || updatedData.status === 'f-s') &&
 			updatedData.event === '6-10'
 
-		console.log({
-			status: updatedData.status,
-			event: updatedData.event,
-			shouldClearDriver,
-			currentDriver: updatedData.driver
-		})
-
 		if (shouldClearDriver) {
 			updatedData.driver = ''
 		}
@@ -77,6 +72,7 @@ export const useUnitForm = (unit: DBunit) => {
 			...updatedData,
 			unit
 		})
+		setLoading(false)
 
 		setNotification({
 			message: response.message,
@@ -85,6 +81,7 @@ export const useUnitForm = (unit: DBunit) => {
 	}
 
 	return {
+		loading,
 		formData,
 		isChanged,
 		canSubmit,
