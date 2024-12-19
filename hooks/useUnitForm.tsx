@@ -47,12 +47,6 @@ export const useUnitForm = (unit: DBunit) => {
 	}
 
 	const handleUpdateUnit = async () => {
-		if (
-			(formData.status === '0-9' || formData.status === 'F-S') &&
-			formData.event === '6-10'
-		) {
-			setFormData({ ...formData, driver: '' })
-		}
 		if (!isChanged) {
 			setNotification({
 				message: 'No se detectaron cambios en la unidad.',
@@ -60,10 +54,30 @@ export const useUnitForm = (unit: DBunit) => {
 			})
 			return
 		}
+
+		const updatedData = { ...formData }
+
+		const shouldClearDriver =
+			(updatedData.status === '0-8' || updatedData.status === 'f-s') &&
+			updatedData.event === '6-10'
+
+		console.log({
+			status: updatedData.status,
+			event: updatedData.event,
+			shouldClearDriver,
+			currentDriver: updatedData.driver
+		})
+
+		if (shouldClearDriver) {
+			updatedData.driver = ''
+		}
+		setFormData(updatedData)
+
 		const response = await updateUnit({
-			...formData,
+			...updatedData,
 			unit
 		})
+
 		setNotification({
 			message: response.message,
 			success: response.success
