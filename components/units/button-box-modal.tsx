@@ -7,6 +7,7 @@ import { DBunit } from '@/types/db-types'
 
 export function ButtonBoxInModal({ unit }: { unit: DBunit }) {
 	const {
+		loading,
 		formData,
 		canSubmit,
 		isDriverAvailable,
@@ -50,6 +51,7 @@ export function ButtonBoxInModal({ unit }: { unit: DBunit }) {
 				onUpdate={handleUpdateUnit}
 				canSubmit={canSubmit}
 				isUnitActive={formData.status === '0-9'}
+				loading={loading}
 			/>
 		</>
 	)
