@@ -1,7 +1,15 @@
 import { Button } from '@/components/ui/button'
 import { Siren } from 'lucide-react'
 
-export const ActionButtons = ({ onUpdate, canSubmit, isUnitActive }) => {
+export const ActionButtons = ({
+	onUpdate,
+	canSubmit,
+	isUnitActive
+}: {
+	onUpdate: () => void
+	canSubmit: boolean
+	isUnitActive: boolean
+}) => {
 	return (
 		<div className='flex gap-2 w-full flex-col border-b-[1px] border-border py-3'>
 			<Button

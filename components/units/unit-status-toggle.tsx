@@ -1,7 +1,13 @@
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import { UNITS_STATUS } from '@/lib/configs/utils-units'
 
-export const UnitStatusToggle = ({ value, onChange }) => {
+export const UnitStatusToggle = ({
+	value,
+	onChange
+}: {
+	value: string
+	onChange: (value: string) => void
+}) => {
 	return (
 		<ToggleGroup
 			type='single'
