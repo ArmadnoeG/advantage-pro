@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { DBunit } from '@/types/db-types'
 import { db } from '@/lib/db/supabase'
-import { getUnits } from '@/lib/db/actions'
+import { getUnits } from '@/lib/db/actions/read'
 
 export function useRealtimeUnits(initialUnits: DBunit[]) {
   const [units, setUnits] = useState<DBunit[]>(initialUnits)
@@ -9,14 +9,14 @@ export function useRealtimeUnits(initialUnits: DBunit[]) {
   useEffect(() => {
     
     const fetchData = async () => {
-      const data = await getUnits()
-      if (data) {
-        
+      const { data } = await getUnits()
+      if (data && Array.isArray(data)) {
+        console.log(data)
         setUnits(prevUnits => {
           const newUnits = data.filter(unit => !prevUnits.some(u => u.id === unit.id))
           return [...prevUnits, ...newUnits]
         })
-      }
+      } 
     }
     
     fetchData()

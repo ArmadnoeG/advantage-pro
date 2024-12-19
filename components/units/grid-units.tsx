@@ -1,10 +1,13 @@
-import { getUnits } from '@/lib/db/actions'
+import { getUnits } from '@/lib/db/actions/read'
 import { GridUnitsClient } from './grid-units-client'
 import { Suspense } from 'react'
 import { GridSkeleton } from './skeleton-units'
 
 export async function GridUnits() {
-	const initialUnits = await getUnits() // Consulta inicial en el servidor
+	const { data, success, message } = await getUnits() // Consulta inicial en el servidor
+	if (!success) throw new Error(message)
+
+	const initialUnits = Array.isArray(data) ? data : []
 	return (
 		<>
 			<h2
