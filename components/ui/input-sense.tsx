@@ -1,8 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client'
-import { useState, useEffect, useRef, useMemo } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { DBunit, DBdrivers } from '@/types/db-types'
-import { getDrivers } from '@/lib/db/actions/read'
+import { useFetchDrivers } from '@/hooks/useFetchDrivers'
+import { useClickOutside } from '@/utils/useClickOutside'
 import { CheckCircle2, Search } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 
@@ -16,38 +17,11 @@ export function InputAutocomplete({
 	onSelect: (driver: string) => void
 }) {
 	const [open, setOpen] = useState(false)
-	const [drivers, setDrivers] = useState<DBdrivers[] | []>([])
 	const [value, setValue] = useState(unit.driver || '')
 	const [searchTerm, setSearchTerm] = useState('')
-	const [loading, setLoading] = useState(false)
-	const wrappedRef = useRef(null)
+	const { drivers, loading } = useFetchDrivers(unit.name)
 
-	useEffect(() => {
-		const fetchDrivers = async () => {
-			setLoading(true)
-			const fetchDrivers = await getDrivers()
-			if (!fetchDrivers || !Array.isArray(fetchDrivers)) return
-			const filteredDrivers = fetchDrivers.filter(
-				driver => driver.authorize === unit.name
-			)
-			setDrivers(filteredDrivers)
-			setLoading(false)
-		}
-		fetchDrivers()
-
-		const handleClickOutside = (event: MouseEvent) => {
-			if (
-				wrappedRef.current &&
-				!(wrappedRef.current as HTMLElement).contains(event.target as Node)
-			) {
-				setOpen(false)
-			}
-		}
-		document.addEventListener('mousedown', handleClickOutside)
-		return () => {
-			document.removeEventListener('mousedown', handleClickOutside)
-		}
-	}, [])
+	const wrappedRef = useClickOutside(() => setOpen(false))
 
 	useEffect(() => {
 		setValue(unit.driver || '')
