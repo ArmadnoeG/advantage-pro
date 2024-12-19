@@ -1,33 +1,17 @@
 import {
-	CircleAlert,
-	Settings,
-	CirclePlus,
-	OctagonMinus,
-	Wrench,
-	CheckCircle2Icon
+	Sliders,
+	GripHorizontal,
 } from 'lucide-react'
 
-export const HANDLE_UNITS = [
+export const OPTIONS_SIDEBAR = [
 	{
-		icon: CirclePlus,
-		label: 'Agregar unidad',
-		href: '#'
-	},
-	{
-		icon: OctagonMinus,
-		label: 'Quitar unidad',
-		href: '#'
-	},
-	{
-		icon: Wrench,
-		label: 'Configurar unidad',
-		href: '#'
-	}
-]
-export const UNITS = [
-	{
-		icon: CheckCircle2Icon,
-		label: 'Disponibilidad',
+		icon: GripHorizontal,
+		label: 'Panel Unidades',
 		href: 'dashboard/units'
+	},
+	{
+		icon: Sliders,
+		label: 'Gestionar unidades',
+		href: './manage-units'
 	}
 ]

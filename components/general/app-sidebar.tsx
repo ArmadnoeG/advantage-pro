@@ -8,8 +8,7 @@ import {
 } from '@/components/ui/sidebar'
 import { NavUser } from '@/components/general/nav-user'
 import { ModeToggle } from '@/components/general/theme-toggle'
-import { UnitsMenu } from '@/components/general/sidebar/units-menu'
-import { SubmenuLinks } from '@/components/general/sidebar/submenu-links'
+import { UnitsMenu } from './sidebar/units-menu'
 
 export function AppSidebar() {
 	return (
