@@ -11,6 +11,8 @@ import { getUnits } from '@/lib/db/actions/read'
 import { Button } from '@/components/ui/button'
 import { Edit } from 'lucide-react'
 
+// dummy
+
 export async function TableUnits({
 	query,
 	page
@@ -23,9 +25,9 @@ export async function TableUnits({
 	return (
 		<Table>
 			<TableCaption>
-				{query ?
-					`Buscando ${query}`
-				:	`Gestiona las ${count} unidades de tu cuerpo de bomberos.`}
+				{query
+					? `Buscando ${query}`
+					: `Gestiona las ${count} unidades de tu cuerpo de bomberos.`}
 			</TableCaption>
 			<TableHeader>
 				<TableRow className='bg-accent'>
