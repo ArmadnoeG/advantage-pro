@@ -48,7 +48,7 @@ export function createPagination(
 		return (
 			<Link
 				key={index}
-				className={`${page === currentPage ? 'bg-primary' : 'border-primary hover:bg-accent'} px-3 py-1 rounded-lg border-[1px]`}
+				className={`${page === currentPage ? 'bg-primary text-white' : 'border-primary hover:bg-accent'} px-3 py-1 rounded-lg border-[1px]`}
 				onClick={() => typeof page === 'number' && handlePageChange(page)}
 				href={`?page=${page}`}
 			>

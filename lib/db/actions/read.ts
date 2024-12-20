@@ -2,7 +2,7 @@
 
 import { DBdrivers, DBunit } from '@/types/db-types'
 import { db } from '@/lib/db/supabase'
-const PAGE_SIZE_MANAGE_UNITS =  2
+const PAGE_SIZE_MANAGE_UNITS =  5
 
 export async function fetchPagesOfUnits(query?: string) {
   const queryBuilder = db

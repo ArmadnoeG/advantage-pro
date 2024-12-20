@@ -1,12 +1,13 @@
 import {
 	Sliders,
-	GripHorizontal,
+	ActivitySquare
+	
 } from 'lucide-react'
 
 export const OPTIONS_SIDEBAR = [
 	{
-		icon: GripHorizontal,
-		label: 'Panel Unidades',
+		icon: ActivitySquare,
+		label: 'Estado unidades',
 		href: 'dashboard/units'
 	},
 	{

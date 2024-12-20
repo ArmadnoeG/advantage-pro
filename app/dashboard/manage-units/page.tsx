@@ -19,7 +19,9 @@ export default async function PageManageUnits({
 	return (
 		<>
 			<section className='max-w-[90%] mx-auto'>
-				<h1 className='my-4'>Gestion de unidades</h1>
+				<h1 className='my-4 text-xl font-bold font-[family-name:var(--font-geist-sans)]'>
+					Gestion de unidades
+				</h1>
 				<div className='flex flex-col mx-auto p-4 w-full gap-4'>
 					<HeaderManageUnits />
 					<Suspense
