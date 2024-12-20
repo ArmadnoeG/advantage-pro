@@ -2,7 +2,7 @@ import { HeaderManageUnits } from '@/components/manage-units/header'
 import { PaginationTable } from '@/components/manage-units/pagination-table'
 import { TableUnits } from '@/components/manage-units/table-units'
 import { Suspense } from 'react'
-import { fetchPagesOfUnits } from '@/lib/db/actions/read'
+import { fetchPagesOfUnits } from '@/lib/services/actions/read'
 import { TableUnitsLoadingSkeleton } from '@/components/manage-units/table-units-loading-skeleton'
 
 export default async function PageManageUnits({

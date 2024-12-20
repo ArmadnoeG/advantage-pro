@@ -7,7 +7,7 @@ import {
 	TableHeader,
 	TableHead
 } from '@/components/ui/table'
-import { getUnits } from '@/lib/db/actions/read'
+import { getUnits } from '@/lib/services/actions/read'
 import { Button } from '@/components/ui/button'
 import { Edit } from 'lucide-react'
 

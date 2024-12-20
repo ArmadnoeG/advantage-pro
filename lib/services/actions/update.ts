@@ -1,7 +1,7 @@
 'use server'
 
 import { DBunit } from '@/types/db-types'
-import { db } from '@/lib/db/supabase'
+import { db } from '@/lib/supabase'
 
 export async function updateUnit ({driver, status, event, unit}: {driver?: string, status?: string, event?: string, unit: DBunit}) {
   const { data, error } = await db

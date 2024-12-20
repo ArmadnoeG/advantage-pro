@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { DBunit } from '@/types/db-types'
-import { db } from '@/lib/db/supabase'
-import { getUnits } from '@/lib/db/actions/read'
+import { db } from '@/lib/supabase'
+import { getUnits } from '@/lib/services/actions/read'
 
 export function useRealtimeUnits(initialUnits: DBunit[]) {
   const [units, setUnits] = useState<DBunit[]>(initialUnits)

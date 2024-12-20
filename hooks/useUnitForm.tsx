@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react'
 import { DBunit } from '@/types/db-types'
-import { updateUnit } from '@/lib/db/actions/update'
+import { updateUnit } from '@/lib/services/actions/update'
 import { useNotificationStore } from '@/stores/useNotificationStore'
 
 interface Options {

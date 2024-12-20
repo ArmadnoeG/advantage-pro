@@ -1,4 +1,4 @@
-import { getUnits } from '@/lib/db/actions/read'
+import { getUnits } from '@/lib/services/actions/read'
 import { GridUnitsClient } from './grid-units-client'
 import { Suspense } from 'react'
 import { GridSkeleton } from './skeleton-units'
