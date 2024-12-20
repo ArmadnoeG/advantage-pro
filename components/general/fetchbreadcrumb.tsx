@@ -6,7 +6,6 @@ import {
 	BreadcrumbList,
 	BreadcrumbItem,
 	BreadcrumbLink,
-	BreadcrumbSeparator,
 	BreadcrumbPage
 } from '@/components/ui/breadcrumb'
 import { ChevronRight } from 'lucide-react'
@@ -21,11 +20,12 @@ export function DynamicBreadcrumb() {
 
 		return (
 			<BreadcrumbItem key={index}>
-				{isLast ?
+				{isLast ? (
 					<BreadcrumbPage className='font-[family-name:var(--font-roboto-flex)]'>
 						{part}
 					</BreadcrumbPage>
-				:	<>
+				) : (
+					<>
 						<BreadcrumbLink href={href}>{part}</BreadcrumbLink>
 						{index < pathParts.length - 1 && (
 							<span
@@ -36,7 +36,7 @@ export function DynamicBreadcrumb() {
 							</span>
 						)}
 					</>
-				}
+				)}
 			</BreadcrumbItem>
 		)
 	})

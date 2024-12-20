@@ -12,8 +12,7 @@ import {
 } from '@/components/ui/collapsible'
 import { ChevronDown } from 'lucide-react'
 import { SidebarMenuLink } from './sidebar-menu-link'
-import { SubmenuLinks } from './submenu-links'
-import { UNITS } from '@/lib/configs/navigaition-sidebar'
+import { OPTIONS_SIDEBAR } from '@/lib/configs/navigaition-sidebar'
 
 export function UnitsMenu() {
 	return (
@@ -30,7 +29,7 @@ export function UnitsMenu() {
 				</CollapsibleTrigger>
 				<CollapsibleContent>
 					<SidebarMenu>
-						{UNITS.map(({ icon: Icon, label, href }) => (
+						{OPTIONS_SIDEBAR.map(({ icon: Icon, label, href }) => (
 							<SidebarMenuLink
 								key={label + 1}
 								icon={Icon}
@@ -38,7 +37,6 @@ export function UnitsMenu() {
 								href={href}
 							/>
 						))}
-						<SubmenuLinks />
 					</SidebarMenu>
 				</CollapsibleContent>
 			</Collapsible>
